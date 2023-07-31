@@ -89,12 +89,34 @@ ul.addEventListener("click",(e)=>
 
     
 })
-//edit button
+
 function deletehandler(postid)
 {
      axios.delete(`https://crudcrud.com/api/d2df527bc98f4819931f322cc6444009/appointmentapp/${postid}`);
 
      
 }
+
+
+//edit the list
+ul.addEventListener("click",(e)=>
+{
+    if(e.target.classList.contains('edit'))
+    {
+        var li=e.target;
+        let data=li.parentNode.textContent;
+        let slice=data.split(" ");
+        console.log(slice[1]);
+        document.getElementById("txt").value=slice[1];
+    document.getElementById("email").value=slice[2];
+    document.getElementById("number").value=slice[3];
+    document.getElementById("dis").value=slice[4];
+    document.getElementById("time").value=slice[5];
+    var li = e.target.parentElement;       
+     ul.removeChild(li);
+    
+     axios.delete(`https://crudcrud.com/api/d2df527bc98f4819931f322cc6444009/appointmentapp/${slice[0]}`);
+    }
+})
    
     
