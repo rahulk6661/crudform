@@ -74,25 +74,27 @@ document.getElementById("txt").value="";
     document.getElementById("dis").value="";
     document.getElementById("time").value="";
 }
-//edit button
-/*ul.addEventListener("click",(postid)=>{
-    if(e.target.classList.contain('edit'))
+ul.addEventListener("click",(e)=>
+{
+    if(e.target.classList.contains('delete'))
     {
-     axios.get("https://crudcrud.com/api/d2df527bc98f4819931f322cc6444009/appointmentapp/${postid}",)
-     
-     const user=JSON.parse(localStorage.getItem(data2));
-     console.log(user);
-    const username=user.username;
-     const email=user.email;
-     const phone=user.phone;
-     localStorage.removeItem(user);
-     
-     document.getElementById('name').value=username;
-     document.getElementById('email').value=email;
-     document.getElementById('phone_number').value=phone;
+        var li=e.target;
+     let data=li.parentNode.textContent;
+     let slice=data.split(" ");
+     let data2=slice[0];
+     deletehandler(data2);
      var li = e.target.parentElement;       
-     userList.removeChild(li);
+     ul.removeChild(li);
     }
-})*/
+
+    
+})
+//edit button
+function deletehandler(postid)
+{
+     axios.delete(`https://crudcrud.com/api/d2df527bc98f4819931f322cc6444009/appointmentapp/${postid}`);
+
+     
+}
    
     
