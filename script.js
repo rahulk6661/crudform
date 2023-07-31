@@ -1,5 +1,3 @@
-
-
 const form=document.getElementById("form1");
 var ul=document.getElementById("msg");
 
@@ -13,35 +11,6 @@ form.addEventListener("submit",(e)=>
     const category=document.getElementById("dis").value;
     const time=document.getElementById("time").value;
     //crreating object 
-    
-
-    //creating li tag
-    var li=document.createElement("li");
-    //creating next-node
-    var textcontent=document.createTextNode(name+" "+email+" "+phone+" "+category+" "+time);
-
-    //append textcontent in li
-    li.appendChild(textcontent);
-
-    //create edit button
-    var editbutton=document.createElement("button");
-    editbutton.className="edit";
-    const textcontent1=document.createTextNode("Edit");
-    editbutton.appendChild(textcontent1);
-
-    //create delete button
-    var deletebutton=document.createElement("button");
-    deletebutton.className="delete";
-    const textcontent2=document.createTextNode("Delete");
-    deletebutton.appendChild(textcontent2);
-
-    //append edit button and delete button to li
-    li.appendChild(editbutton);
-    li.appendChild(deletebutton);
-
-    //append to ul
-    ul.append(li);
-
     var datasubmit={
         "name":name,
         "email":email,
@@ -51,16 +20,60 @@ form.addEventListener("submit",(e)=>
     }
     //server connection
     axios.post("https://crudcrud.com/api/d2df527bc98f4819931f322cc6444009/appointmentapp",datasubmit).then((res)=>console.log(res)).catch((err)=>console.log(err));
-    
+    showyourdata(datasubmit);
     //empty again
-    document.getElementById("txt").value="";
+    
+
+})
+//after refresh also show the data
+window.addEventListener("DOMContentLoaded",()=>
+{
+    axios.get("https://crudcrud.com/api/d2df527bc98f4819931f322cc6444009/appointmentapp")
+    .then((res)=>{
+        for(var i=0;i<res.data.length;i++)
+        {
+            showyourdata(res.data[i]);
+        }
+    })
+})
+//
+
+
+
+function showyourdata(user)
+{
+//creating li tag
+var li=document.createElement("li");
+//creating next-node
+var textcontent=document.createTextNode(user.name+" "+user.email+" "+user.phone+" "+user.category+" "+user.time);
+
+//append textcontent in li
+li.appendChild(textcontent);
+
+//create edit button
+var editbutton=document.createElement("button");
+editbutton.className="edit";
+const textcontent1=document.createTextNode("Edit");
+editbutton.appendChild(textcontent1);
+
+//create delete button
+var deletebutton=document.createElement("button");
+deletebutton.className="delete";
+const textcontent2=document.createTextNode("Delete");
+deletebutton.appendChild(textcontent2);
+
+//append edit button and delete button to li
+li.appendChild(editbutton);
+li.appendChild(deletebutton);
+
+//append to ul
+ul.append(li);
+document.getElementById("txt").value="";
     document.getElementById("email").value="";
     document.getElementById("number").value="";
     document.getElementById("dis").value="";
     document.getElementById("time").value="";
-
-})
-
+}
 //edit button
 /*ul.addEventListener("click",(postid)=>{
     if(e.target.classList.contain('edit'))
@@ -81,3 +94,5 @@ form.addEventListener("submit",(e)=>
      userList.removeChild(li);
     }
 })*/
+   
+    
