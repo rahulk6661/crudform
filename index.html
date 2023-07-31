@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crud-form</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></script>
+   <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="main">
+    <div class="header">
+        <h1>Appoinment-App</h1>
+    </div>
+    <div class="container">
+        <form id="form1">
+            <label for="txt">Enter name</label>
+            <input type="text"  id="txt" required><br><br>
+            <label for="email">Enter Email</label>
+            <input type="email" id="email" required><br><br>
+            <label for="number">Enter Phone Number</label>
+            <input type="tel" id="number" required><br><br>
+            <label for="dis">Select Category</label>
+            <select id="dis">
+                <option>Skin</option>
+               <option>physiological</option> 
+                <option>Cancer</option>
+                <option>Viral</option>
+                <option>Sugar</option>
+                <option>other</option>
+            </select><br><br>
+            <label for="time">Choose Time</label>
+            <input type="datetime-local" id="time" required><br><br>
+            <button class="f" >Boooked Appoinment</button>
+        </form>
+    </div>
+    <div class="message">
+        <ul id="msg">
+        
+        </ul>
+    </div>
+    </div>
+</body>
+
+
+</html>
